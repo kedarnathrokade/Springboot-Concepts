@@ -3,6 +3,7 @@ package com.test.Module1Introduction;
 import com.test.Module1Introduction.impl.EmailNotificationService;
 import com.test.Module1Introduction.impl.SmsNotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +15,7 @@ public class Module1IntroductionApplication implements CommandLineRunner {
 		final NotificationService notificationService;
 
 
-	Module1IntroductionApplication(NotificationService noticationService){
+	Module1IntroductionApplication(@Qualifier("sms") NotificationService noticationService){
 		this.notificationService = noticationService; // Constructor DI
 
 	}
