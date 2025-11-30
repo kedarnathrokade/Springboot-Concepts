@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Module1IntroductionApplication implements CommandLineRunner {
 
 	// @Autowired
-		NotificationService notificationService;
+		final NotificationService notificationService;
 
 
 	Module1IntroductionApplication(NotificationService noticationService){
