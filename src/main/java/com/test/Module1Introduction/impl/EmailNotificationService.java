@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 //@Primary // This annotation is used to run this class when multiple implementations are present
 @Component// This annotation will create a bean of this class
-@ConditionalOnProperty(name = "notification.type", havingValue="email")
+// @ConditionalOnProperty(name = "notification.type", havingValue="email")
 public class EmailNotificationService implements NotificationService {
     @Override
     public void send(String message) {

@@ -8,24 +8,38 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootApplication
 public class Module1IntroductionApplication implements CommandLineRunner {
 
 	// @Autowired
-		final NotificationService notificationService;
+//		final NotificationService notificationService;
+//
+//
+//	Module1IntroductionApplication(@Qualifier("sms") NotificationService noticationService){
+//		this.notificationService = noticationService; // Constructor DI
+//
+//	}
 
+	@Autowired
+	Map<String, NotificationService> notificationServiceMap = new HashMap<>(); // creating all the beans
 
-	Module1IntroductionApplication(@Qualifier("sms") NotificationService noticationService){
-		this.notificationService = noticationService; // Constructor DI
-
-	}
 
 
 	@Override
 	public void run(String... args) throws Exception {
 		//
-		// NotificationService notificationServiceobj = new SmsNotificationService();
-		notificationService.send("Hello");
+//		// NotificationService notificationServiceobj = new SmsNotificationService();
+//		notificationService.send("Hello");
+
+		for(var notificationService : notificationServiceMap.entrySet()){
+
+			System.out.println(notificationService.getKey());
+			notificationService.getValue().send("Hello"); // calling method of bean
+
+		}
 
 
 	}
