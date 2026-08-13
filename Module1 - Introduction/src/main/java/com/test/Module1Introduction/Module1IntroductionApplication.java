@@ -15,7 +15,7 @@ import java.util.Map;
 public class Module1IntroductionApplication implements CommandLineRunner {
 
 	// @Autowired
-//		final NotificationService notificationService;
+//		final NotificationService notificationService; // Field DI
 //
 //
 //	Module1IntroductionApplication(@Qualifier("sms") NotificationService noticationService){
