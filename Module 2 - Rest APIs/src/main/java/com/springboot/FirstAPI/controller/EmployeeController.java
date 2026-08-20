@@ -2,7 +2,7 @@ package com.springboot.FirstAPI.controller;
 
 import com.springboot.FirstAPI.dto.EmployeeDTO;
 import com.springboot.FirstAPI.entities.EmployeeEntity;
-import com.springboot.FirstAPI.repository.EmployeeRepository;
+import com.springboot.FirstAPI.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -17,34 +17,32 @@ public class EmployeeController {
 //        return "Secret Message : astasf!3e1345rfaws";
 //    }
 
-    private EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
-    @GetMapping("/{employeeId}")
-    public EmployeeEntity getEmployeeById(@PathVariable(name = "employeeId") Long id){
 
-        return employeeRepository.findById(id).orElse(null);
+    @GetMapping("/{employeeId}")
+    public EmployeeDTO getEmployeeById(@PathVariable(name = "employeeId") Long id){
+
+        return employeeService.getEmployeeById(id);
     }
 
     @GetMapping
-    public List<EmployeeEntity> getEmployees(@RequestParam(required = false) Integer age, @RequestParam(required = false) String sortBy){
+    public List<EmployeeDTO> getEmployees(@RequestParam(required = false) Integer age, @RequestParam(required = false) String sortBy){
 
 
-        return  employeeRepository.findAll();
+        return  employeeService.getEmployees();
     }
 
     @PostMapping
-    public EmployeeEntity createNewEmployee(@RequestBody EmployeeEntity inputEmployee){
+    public EmployeeDTO createNewEmployee(@RequestBody EmployeeDTO inputEmployee){
 
-        return employeeRepository.save(inputEmployee);
+        return employeeService.createNewEmployee(inputEmployee);
     }
 
-    @PutMapping String updateEmployeeById(){
 
-        return  "Hello from PUT";
-    }
 
 }
