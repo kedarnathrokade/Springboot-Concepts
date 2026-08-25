@@ -3,11 +3,13 @@ package com.springboot.FirstAPI.controller;
 import com.springboot.FirstAPI.dto.EmployeeDTO;
 import com.springboot.FirstAPI.entities.EmployeeEntity;
 import com.springboot.FirstAPI.service.EmployeeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/employees")
@@ -26,9 +28,11 @@ public class EmployeeController {
 
 
     @GetMapping("/{employeeId}")
-    public EmployeeDTO getEmployeeById(@PathVariable(name = "employeeId") Long id){
+    public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable(name = "employeeId") Long id){
 
-        return employeeService.getEmployeeById(id);
+        Optional<EmployeeDTO> employeeDTO =  employeeService.getEmployeeById(id);
+        return
+                employeeDTO.map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1)).orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping
