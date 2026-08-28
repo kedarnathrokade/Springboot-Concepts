@@ -1,6 +1,7 @@
 package com.springboot.FirstAPI.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.springboot.FirstAPI.annotations.EmployeeRoleValidationAnnotation;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +31,8 @@ public class EmployeeDTO {
     private Integer age;
 
     @NotBlank(message = "User cannot be null")
-    @Pattern(regexp = "^(USER|ADMIN)", message = "User is not valid, User is either ADMIN or USER")
+ //   @Pattern(regexp = "^(USER|ADMIN)", message = "User is not valid, User is either ADMIN or USER")
+    @EmployeeRoleValidationAnnotation
     private String role;
 
     @NotNull(message = "Date of joining cannot null")
