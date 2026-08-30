@@ -56,16 +56,19 @@ public class EmployeeService {
 
     }
 
-    public void isExists(Long employeeId){
-        boolean exists = employeeRepository.existsById(employeeId);
-        if(!exists) throw new ResourceNotfoundException("Employee not found with id: "+employeeId);
 
-    }
 
     public boolean deleteEmployeeById(Long employeeId) {
         isExists(employeeId);
         employeeRepository.deleteById(employeeId);
         return true;
+    }
+
+
+    public void isExists(Long employeeId){
+        boolean exists = employeeRepository.existsById(employeeId);
+        if(!exists) throw new ResourceNotfoundException("Employee not found with id: "+employeeId);
+
     }
 
 

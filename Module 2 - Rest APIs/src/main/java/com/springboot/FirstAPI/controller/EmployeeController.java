@@ -35,8 +35,8 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable(name = "employeeId") Long id){
 
         Optional<EmployeeDTO> employeeDTO =  employeeService.getEmployeeById(id);
-        return
-                employeeDTO.map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1))
+
+        return employeeDTO.map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1))
                         .orElseThrow(() -> new ResourceNotfoundException("Employee not found with id: "+id));
     }
 
